@@ -1,0 +1,27 @@
+<p>roles works!</p>
+<div class="row">
+    <div class="col-3">
+        <p>First Name: {{ firstName }}</p>
+        </div>
+    <div class="col-3">
+        <p>Angular Version: {{ angularversion }}</p>
+    </div>
+    <div class="col-3">
+        <p>Version:{{ version }}</p>
+    </div>
+</div>
+<div class ="row">
+    <div class="col-3">
+        <input type="text" [value]="firstName"  class="form-control"/>
+    </div>
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-primary" (click)="showWelcomeMessage()">Click Me</button>    
+    </div>
+   <div class="col-3">
+        <button class="btn btn-primary" (click)="showMessage('Hello, Angular!')">Show React msg</button>    
+    </div> 
+    <div class="col-3">
+        <button class="btn btn-primary" (click)="showMessage('Welcome to Angular!')">Show Welcome msg</button>    
+    </div>
+</div>
