@@ -1,26 +1,33 @@
 import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {OnInit} from '@angular/core';
+import { IRole } from '../../model/interface/role';
+import { HttpClient } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-roles',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule,CommonModule],
   templateUrl: './roles.html',
   styleUrl: './roles.css',
 })
 
-export class Roles {
-  //string, number, boolean, any, void, null, undefined, never, object, date, array, tuple, enum, interface, type, class, function, symbol, bigint
-  firstName: string = 'John';
-  angularversion = "Version 18";
-  version: number = 1.0;
-  isActive: boolean = true;
-  currentDate: Date = new Date();
+export class Roles implements OnInit {
 
-  showWelcomeMessage(){
-    alert("Welcome to Angular")
+  rolesList: IRole[] = [];
+  private http = inject(HttpClient);
+
+  ngOnInit(): void {
+    this.getAllRoles();
   }
 
-  showMessage(message: string){
-    alert(message)
+  getAllRoles() {
+    // Logic to retrieve all roles from the backend or service
+    this.http.get("https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllRoles").subscribe((res:any) => {
+      this.rolesList = res.data;
+    });
   }
+
 }
